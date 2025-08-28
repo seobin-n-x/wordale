@@ -38,7 +38,7 @@ function appStart() {
         block.style.transition = "transform 0.3s";
         block.style.transform = "rotateX(90deg)";
 
-        // 2단계: 회전 도중 색상 변경
+        // 회전 도중 색상 변경
         setTimeout(() => {
           if (입력한_글자 === 정답_글자) {
             맞은_갯수 += 1;
@@ -50,15 +50,17 @@ function appStart() {
           }
 
           block.style.color = "white";
-
-          // 회전 복귀
           block.style.transform = "rotateX(0deg)";
+
+          if (i === 4) {
+          setTimeout(() => {
+            if (맞은_갯수 === 5) gameover();
+            else nextLine();
+          }, 300); // 마지막 회전 끝난 뒤 실행
+        }
         }, 150); // 90도 도는 데 절반 시간 (300ms 기준)
       }, i * 300);
     }
-
-    if (맞은_갯수 === 5) gameover();
-    else nextLine();
   };
 
   const handleBackSpace = () => {
