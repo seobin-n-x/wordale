@@ -2,6 +2,7 @@
 
 header {
     border-bottom: 1px solid #d3d6da;
+    margin-bottom: 10px;
 }
 
 .header-box {
@@ -99,4 +100,9 @@ footer {
 
 .footer-box__backspace {
     width: 20px;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
 }
