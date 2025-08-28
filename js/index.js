@@ -33,13 +33,28 @@ function appStart() {
       );
       const 입력한_글자 = block.innerText;
       const 정답_글자 = 정답[i];
-      if (입력한_글자 === 정답_글자) {
-        맞은_갯수 += 1;
-        block.style.background = "#6AAA64";
-      } else if (정답.includes(입력한_글자)) {
-        block.style.background = "#C9B458";
-      } else block.style.background = "#787C7E";
-      block.style.color = "white";
+      setTimeout(() => {
+        // 회전시작
+        block.style.transition = "transform 0.3s";
+        block.style.transform = "rotateX(90deg)";
+
+        // 2단계: 회전 도중 색상 변경
+        setTimeout(() => {
+          if (입력한_글자 === 정답_글자) {
+            맞은_갯수 += 1;
+            block.style.background = "#6AAA64";
+          } else if (정답.includes(입력한_글자)) {
+            block.style.background = "#C9B458";
+          } else {
+            block.style.background = "#787C7E";
+          }
+
+          block.style.color = "white";
+
+          // 회전 복귀
+          block.style.transform = "rotateX(0deg)";
+        }, 150); // 90도 도는 데 절반 시간 (300ms 기준)
+      }, i * 300);
     }
 
     if (맞은_갯수 === 5) gameover();
@@ -74,12 +89,37 @@ function appStart() {
     }
   };
 
+  const keys = document.querySelectorAll(".footer-box__block");
+
+  keys.forEach((keyEl) => {
+    keyEl.addEventListener("click", () => {
+      const thisBlock = document.querySelector(
+        `.board-column[data-index='${attempts}${index}']`
+      );
+
+      const key = keyEl.dataset.key;
+
+      if (key !== "Backspace" && key !== "Enter") {
+        thisBlock.innerText = key;
+        index += 1;
+      } else if (key === "Backspace") {
+        handleBackSpace();
+      } else if (index === 5) {
+        if (key === "Enter") {
+          handleEnterkey();
+        }
+      }
+    });
+  });
+
   const startTimer = () => {
     const 시작_시간 = new Date();
 
     function setTime() {
       const 현재_시간 = new Date();
       const 흐른_시간 = new Date(현재_시간 - 시작_시간);
+
+      현재_시간.getHours;
       const 분 = 흐른_시간.getMinutes().toString().padStart(2, "0");
       const 초 = 흐른_시간.getSeconds().toString().padStart(2, "0");
       const timeText = document.querySelector(".time");
