@@ -68,7 +68,7 @@ footer {
 }
 
 .footer-box {
-    width: 500px;
+    width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -87,7 +87,7 @@ footer {
 }
 
 .footer-box-1 {
-    width: 450px;
+    width: 350px;
     display: flex;
     justify-content: space-between;
     align-items: center;
