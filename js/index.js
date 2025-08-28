@@ -63,7 +63,7 @@ function appStart() {
       `.board-column[data-index='${attempts}${index}']`
     );
 
-    if (e.key-- - "Backspace") handleBackSpace();
+    if (e.key === "Backspace") handleBackSpace();
     else if (index === 5) {
       if (e.key === "Enter") {
         handleEnterkey();
@@ -88,7 +88,7 @@ function appStart() {
 
     timer = setInterval(setTime, 1000);
   };
-  
+
   startTimer();
   window.addEventListener("keydown", handlekeydown);
 }
