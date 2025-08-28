@@ -86,6 +86,25 @@ footer {
     border-radius: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .footer-box {
+    width: 100vw;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;       
+  }
+
+.footer-box-1 {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+ 
+}
+
 .footer-box-1 {
     width: 350px;
     display: flex;
